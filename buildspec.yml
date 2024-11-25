@@ -6,13 +6,19 @@ phases:
       java: corretto17
   pre_build:
     commands:
+      - echo "Running pre-build tasks..."
       - env
       - ant -f test.xml -v
   build:
     commands:
+      - echo "Starting the build process..."
       - ant -f build.xml -v
+  post_build:
+    commands:
+      - echo "Build and tests completed successfully."
 
 artifacts:
   files:
     - dist/rectangle.jar
+  discard-paths: no
   name: rectangle-$(date +%y%m%d%H%M).zip
